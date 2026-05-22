@@ -1,0 +1,27 @@
+handle: buttonGroup
+instructions: null
+name: 'Button Group'
+searchable: false
+settings:
+  createButtonLabel: null
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - f17c14fe-dd0d-4dd2-85c8-0b33a6e2d625 # Button
+        -
+          - group
+          - General
+  includeTableView: false
+  maxEntries: null
+  minEntries: null
+  pageSize: 50
+  propagationKeyFormat: null
+  propagationMethod: all
+  viewMode: cards
+translationKeyFormat: null
+translationMethod: site
+type: CraftCms\Cms\Field\Matrix

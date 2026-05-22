@@ -1,0 +1,16 @@
+{
+  "name": "nuxt-craft-poc",
+  "private": true,
+  "scripts": {
+    "dev": "cd frontend && bun run dev",
+    "build": "cd frontend && bun run build",
+    "backend:start": "cd backend && ddev start",
+    "backend:stop": "cd backend && ddev stop",
+    "start": "concurrently \"bun run backend:start\" \"bun run dev\"",
+    "stop": "bun run backend:stop"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  },
+  "packageManager": "bun@1.2.13"
+}

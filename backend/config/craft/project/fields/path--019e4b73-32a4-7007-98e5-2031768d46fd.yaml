@@ -1,0 +1,37 @@
+handle: path
+instructions: null
+name: Path
+searchable: false
+settings:
+  fullGraphqlData: true
+  maxLength: 255
+  showLabelField: false
+  typeSettings:
+    __assoc__:
+      0:
+        - entry
+        -
+          __assoc__:
+            -
+              - sources
+              - '*'
+      2:
+        - asset
+        -
+          __assoc__:
+            -
+              - sources
+              - '*'
+            -
+              - allowedKinds
+              - '*'
+  types:
+    - entry
+    - url
+    - asset
+    - email
+    - tel
+    - sms
+translationKeyFormat: null
+translationMethod: none
+type: CraftCms\Cms\Field\Link

@@ -1,0 +1,8 @@
+baseUrl: $APP_URL
+handle: default
+hasUrls: true
+language: en
+name: 'Nuxt Craft POC'
+primary: true
+siteGroup: 599a02fe-381a-4444-bf17-cf7d7c76caa5 # Nuxt Craft POC
+sortOrder: 1

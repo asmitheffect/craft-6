@@ -1,0 +1,6 @@
+isPublic: true
+name: 'Public Schema'
+scope:
+  - 'sites.252d2f43-ca1a-4f56-8b71-a79814479385:read' # Nuxt Craft POC
+  - 'directive:parseRefs'
+  - 'directive:transform'

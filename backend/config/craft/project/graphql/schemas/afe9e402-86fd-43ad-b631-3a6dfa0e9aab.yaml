@@ -1,0 +1,12 @@
+isPublic: false
+name: Website
+scope:
+  - 'sites.252d2f43-ca1a-4f56-8b71-a79814479385:read' # Nuxt Craft POC
+  - 'elements.drafts:read'
+  - 'elements.revisions:read'
+  - 'elements.inactive:read'
+  - 'sections.21204934-dd24-4d9c-99de-d76f991a2514:read' # Home Page
+  - 'volumes.99e8a67c-e894-4deb-8f96-9f3adbc00632:read' # Hero Images
+  - 'usergroups.solo:read'
+  - 'directive:parseRefs'
+  - 'directive:transform'

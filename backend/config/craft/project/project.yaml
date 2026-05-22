@@ -1,0 +1,42 @@
+dateModified: 1779383267
+fs:
+  local:
+    hasUrls: true
+    name: Local
+    settings:
+      path: '@webroot/uploads'
+      rootPath: /var/www/html/public/uploads
+      settingsHtml: "\n    \n                            \n        <div class=\"field\" id=\"path-field\" data-attribute=\"path\" data-error-key=\"path\"><div class=\"heading\"><label id=\"path-label\" for=\"path\">Base Path<span class=\"visually-hidden\">Required</span><span class=\"required\" aria-hidden=\"true\"></span></label></div><div id=\"path-instructions\" class=\"instructions\"><p>The base folder path that should be used as the root of the filesystem.</p>\n</div><div class=\"input ltr\">\n\n\n<div id=\"path-container\" class=\"autosuggest-container\" tabindex=\"-1\">\n        <input class=\"ltr text fullwidth text fullwidth\" type=\"text\" id=\"path-preview\" size value=\"@webroot/uploads\" autocomplete=\"off\" disabled title placeholder=\"/path/to/folder\" dir=\"ltr\">\n\n    \n    <vue-autosuggest\n        :suggestions=\"filteredOptions\"\n        :get-suggestion-value=\"getSuggestionValue\"\n        :input-props=\"inputProps\"\n        :limit=\"limit\"\n        :component-attr-id-autosuggest=\"id\"\n        @selected=\"onSelected\"\n        @focus=\"updateFilteredOptions\"\n        @blur=\"onBlur\"\n        @input=\"onInputChange\"\n        v-model=\"inputProps.initialValue\"\n    >\n        <template slot-scope=\"{suggestion}\">\n            {{suggestion.item.name || suggestion.item}}\n            <span v-if=\"suggestion.item.hint\" class=\"light\">– {{suggestion.item.hint}}</span>\n        </template>\n    </vue-autosuggest>\n    \n</div>\n\n</div></div>\n\n\n"
+    type: CraftCms\Cms\Filesystem\Filesystems\Local
+    url: $APP_URL/uploads
+meta:
+  __names__:
+    1d927e1e-3c04-4893-ba84-0c3b6f2cbd39: Home # Home
+    019e4b6e-586c-73bc-aa98-1a3958b331d7: Brow # Brow
+    019e4b7e-9685-7233-a22c-87229fd3b6b0: Variant # Variant
+    019e4b12-6935-703e-a5aa-26b64fffc513: 'Hero Image' # Hero Image
+    019e4b69-981d-736b-9cce-32fb98558f35: Subtitle # Subtitle
+    019e4b72-eb51-7304-851f-4f6b4b83e6b6: Label # Label
+    019e4b73-32a4-7007-98e5-2031768d46fd: Path # Path
+    019e4b73-44b1-7190-8b2e-e235f8f5c2bd: 'Button Group' # Button Group
+    99e8a67c-e894-4deb-8f96-9f3adbc00632: 'Hero Images' # Hero Images
+    252d2f43-ca1a-4f56-8b71-a79814479385: 'Nuxt Craft POC' # Nuxt Craft POC
+    599a02fe-381a-4444-bf17-cf7d7c76caa5: 'Nuxt Craft POC' # Nuxt Craft POC
+    21204934-dd24-4d9c-99de-d76f991a2514: 'Home Page' # Home Page
+    25559806-fdd9-4fe2-935a-1d12673d3970: Hero # Hero
+    afe9e402-86fd-43ad-b631-3a6dfa0e9aab: Website # Website
+    c32741fa-98c6-4f0b-9be8-d25891e6b2bf: 'Public Schema' # Public Schema
+    f17c14fe-dd0d-4dd2-85c8-0b33a6e2d625: Button # Button
+system:
+  edition: solo
+  live: true
+  name: 'Nuxt Craft POC'
+  schemaVersion: 6.0.0.2
+  timeZone: UTC
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  require2fa: false
+  requireEmailVerification: true

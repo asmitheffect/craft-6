@@ -1,0 +1,26 @@
+query HomePage {
+    entry(id: 2) {
+        ... on home_Entry {
+            id
+            title
+            brow
+            subtitle
+            heroImage {
+                url(handle: "hero")
+                alt
+                width(handle: "hero")
+                height(handle: "hero")
+            }
+            buttonGroup {
+                ... on button_Entry {
+                    title
+                    variant
+                    path {
+                        url
+                        target
+                    }
+                }
+            }
+        }
+    }
+}

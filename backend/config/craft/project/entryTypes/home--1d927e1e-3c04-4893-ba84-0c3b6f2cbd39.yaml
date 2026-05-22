@@ -1,0 +1,118 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  e314b7a8-914f-473d-adb5-fc368a521fda:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-05-21T15:03:32+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: CraftCms\Cms\FieldLayout\LayoutElements\Entries\EntryTitleField
+            uid: 9935b2bb-8c75-4c75-9f52-163052468941
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-05-21T16:46:30+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 019e4b6e-586c-73bc-aa98-1a3958b331d7 # Brow
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: CraftCms\Cms\FieldLayout\LayoutElements\CustomField
+            uid: 0598f3dc-7e0c-44f7-a5e9-360312d86a80
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-05-21T16:41:15+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 019e4b69-981d-736b-9cce-32fb98558f35 # Subtitle
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: CraftCms\Cms\FieldLayout\LayoutElements\CustomField
+            uid: ac146bab-ac5a-4569-8625-d7fa1637c6d6
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-05-21T15:06:07+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 019e4b12-6935-703e-a5aa-26b64fffc513 # Hero Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: CraftCms\Cms\FieldLayout\LayoutElements\CustomField
+            uid: 76a83af0-b4d8-4169-8a04-e298408d9aac
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-05-21T16:51:47+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 019e4b73-44b1-7190-8b2e-e235f8f5c2bd # Button Group
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: CraftCms\Cms\FieldLayout\LayoutElements\CustomField
+            uid: 96de833f-137c-48e2-84b5-d4fcbd14a3a8
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: acc93bf2-97f7-4208-9400-f9534753ef90
+        userCondition: null
+    thumbFieldKey: null
+handle: home
+hasTitleField: true
+icon: house
+name: Home
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

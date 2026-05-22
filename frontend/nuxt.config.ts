@@ -1,0 +1,39 @@
+import graphqlLoader from 'vite-plugin-graphql-loader'
+
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
+    modules: ['@nuxt/eslint', '@nuxt/ui'],
+    devtools: {
+        enabled: true
+    },
+
+    css: ['~/assets/css/main.css'],
+
+    ui: {
+        colorMode: false
+    },
+
+    runtimeConfig: {
+        craftApiToken: process.env.CRAFT_API_TOKEN,
+        public: {
+            craftApiUrl: process.env.CRAFT_API_URL
+        }
+    },
+
+    routeRules: {},
+
+    compatibilityDate: '2025-01-15',
+
+    vite: {
+        plugins: [graphqlLoader()]
+    },
+
+    eslint: {
+        config: {
+            stylistic: {
+                commaDangle: 'never',
+                braceStyle: '1tbs'
+            }
+        }
+    }
+})

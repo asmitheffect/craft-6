@@ -1,0 +1,34 @@
+handle: variant
+instructions: null
+name: Variant
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - Solid
+        -
+          - value
+          - solid
+    -
+      __assoc__:
+        -
+          - label
+          - Outline
+        -
+          - value
+          - outline
+    -
+      __assoc__:
+        -
+          - label
+          - Soft
+        -
+          - value
+          - soft
+translationKeyFormat: null
+translationMethod: none
+type: CraftCms\Cms\Field\Dropdown

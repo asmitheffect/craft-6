@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 1d927e1e-3c04-4893-ba84-0c3b6f2cbd39 # Home
+handle: homePage
+maxAuthors: 1
+minAuthors: 0
+name: 'Home Page'
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  252d2f43-ca1a-4f56-8b71-a79814479385: # Nuxt Craft POC
+    enabledByDefault: true
+    hasUrls: true
+    template: home-page/_entry.twig
+    uriFormat: 'home-page/{slug}'
+type: channel

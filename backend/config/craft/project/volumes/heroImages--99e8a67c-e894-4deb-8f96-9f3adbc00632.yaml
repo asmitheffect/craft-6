@@ -1,0 +1,74 @@
+altTranslationKeyFormat: null
+altTranslationMethod: none
+fieldLayouts:
+  c32d5ae6-e429-465d-9929-3d7061d11ac6:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-05-21T15:09:56+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: CraftCms\Cms\FieldLayout\LayoutElements\Assets\AssetTitleField
+            uid: 0afce055-e471-4849-815a-bea2f8f6d1ba
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            attribute: alt
+            class: null
+            cols: null
+            dateAdded: '2026-05-21T15:17:14+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            instructions: null
+            label: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: true
+            required: false
+            rows: null
+            tip: null
+            title: null
+            type: CraftCms\Cms\FieldLayout\LayoutElements\Assets\AltField
+            uid: 997fbc17-33bc-4eb7-bbd8-85a6f403fcf8
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 60dd50fe-02af-491c-bf63-f743aa350b9b
+        userCondition: null
+    thumbFieldKey: null
+fs: local
+handle: heroImages
+name: 'Hero Images'
+sortOrder: 1
+subpath: hero
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+transformFs: local
+transformSubpath: hero/transforms
