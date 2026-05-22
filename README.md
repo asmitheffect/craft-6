@@ -24,14 +24,15 @@ Before you can run this project locally you need the following installed:
 | [Bun](https://bun.sh) | 1.2+ | Frontend package manager |
 | [PHP](https://www.php.net) | 8.5 | Backend runtime |
 | [Composer](https://getcomposer.org) | 2.x | PHP package manager |
-| [DDEV](https://ddev.readthedocs.io) | Latest | Docker-based dev environment for the backend |
-| [Docker Desktop](https://www.docker.com/products/docker-desktop/) | Latest | Required by DDEV |
+| [DDEV](https://ddev.readthedocs.io) | Latest | Dev environment for the backend |
+| [OrbStack](https://orbstack.dev) | Latest | Required by DDEV (recommended over Docker Desktop) |
+| [1Password CLI](https://developer.1password.com/docs/cli/) | Latest | Required for `db:pull` / `db:push` scripts |
 
 ### Installing DDEV
 
 DDEV manages the PHP/MySQL/nginx environment for the backend. Follow the [official DDEV installation guide](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/) for your OS.
 
-Make sure Docker Desktop is running before starting DDEV.
+This project uses **OrbStack** as the container runtime. Make sure OrbStack is running before starting DDEV.
 
 ---
 
@@ -64,25 +65,15 @@ The backend will be available at `https://backend.ddev.site:8443`.
 
 The Craft CMS admin panel is at `https://backend.ddev.site:8443/admin`.
 
-### 3. Configure the frontend environment
+### 3. Configure environment files
 
-Create a `.env` file in the `frontend/` directory:
+Pull both `.env` files (frontend and backend) from 1Password in one step:
 
 ```bash
-cp frontend/.env.example frontend/.env
+bun run env:pull
 ```
 
-If no `.env.example` exists, create `frontend/.env` with:
-
-```env
-CRAFT_API_URL=https://backend.ddev.site:8443/actions/graphql/api
-CRAFT_API_TOKEN=your_craft_graphql_token_here
-```
-
-To get the `CRAFT_API_TOKEN`:
-1. Log into the Craft admin panel at `https://backend.ddev.site:8443/admin`
-2. Go to **Settings → GraphQL → Tokens**
-3. Copy the token or create a new one with the required permissions
+This writes `frontend/.env` and `backend/.env` from the shared secure notes in 1Password.
 
 ### 4. Install frontend dependencies
 
@@ -200,6 +191,108 @@ nuxt-craft-poc/
 ├── package.json              # Root scripts (orchestration only)
 └── README.md
 ```
+
+---
+
+## Environment Variables
+
+Both env files are managed via 1Password secure notes. Use the scripts below instead of editing them manually.
+
+### Pull env files
+
+Writes `frontend/.env` and `backend/.env` from 1Password:
+
+```bash
+bun run env:pull
+```
+
+### Push env files
+
+Updates the 1Password secure notes from your local files:
+
+```bash
+bun run env:push
+```
+
+### Manual method
+
+If the 1Password CLI isn't available, you can copy the values directly from the secure notes in the 1Password app:
+
+- **`Nuxt/Craft - Frontend ENV`** → paste contents into `frontend/.env`
+- **`Nuxt/Craft - Backend ENV`** → paste contents into `backend/.env`
+
+### Variable reference
+
+**`frontend/.env`**
+
+| Variable | Description |
+|----------|-------------|
+| `CRAFT_API_URL` | Craft GraphQL endpoint |
+| `CRAFT_API_TOKEN` | GraphQL API token from Craft admin |
+
+**`backend/.env`**
+
+| Variable | Description |
+|----------|-------------|
+| `APP_KEY` | Laravel application key — generate with `ddev artisan key:generate` |
+| `APP_URL` | Backend base URL |
+| `DB_*` | Injected automatically by DDEV — only needed outside of `ddev` commands |
+
+### Backend Login
+
+The Craft admin panel is at `https://backend.ddev.site:8443/admin`.
+
+Credentials are stored in 1Password under **`Nuxt Craft - Backend login`**.
+
+To reset your password at any time:
+
+```bash
+ddev artisan craft users/set-password --email=your@email.com
+```
+
+---
+
+## Database
+
+The development database seed (content entries, admin user, GraphQL tokens) is stored in 1Password under **`Nuxt Craft - Database dump`**.
+
+Database syncing is handled via the 1Password CLI — no manual downloading or uploading required.
+
+### Setup (once per machine)
+
+1. Install the [1Password CLI](https://developer.1password.com/docs/cli/get-started/):
+   ```bash
+   brew install 1password-cli
+   ```
+2. Enable CLI integration in the 1Password desktop app: **Settings → Developer → Integrate with 1Password CLI**
+
+   This lets `op` authenticate via biometrics/Touch ID without a separate sign-in step.
+
+### Pull the latest dump
+
+Imports the shared dump from 1Password directly into your local DDEV database:
+
+```bash
+bun run db:pull
+```
+
+> The backend must be running (`bun run backend:start`) before importing.
+
+After importing, reset your admin password if needed:
+
+```bash
+ddev artisan craft users/set-password --email=your@email.com
+```
+
+### Push a new dump
+
+When you've made significant content changes and want to update the shared seed, export and upload in one step:
+
+```bash
+bun run db:push
+```
+
+This exports the current DDEV database and overwrites the `Nuxt Craft - Database dump` document in 1Password.
 
 ---
 

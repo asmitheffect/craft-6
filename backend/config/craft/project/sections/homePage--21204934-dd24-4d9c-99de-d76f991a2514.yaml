@@ -10,12 +10,12 @@ name: 'Home Page'
 previewTargets:
   -
     label: 'Primary entry page'
-    urlFormat: '{url}'
+    urlFormat: 'http://localhost:3000/?token={previewToken}&x-craft-live-preview=1&draftId={draftId}&canonicalId={canonicalId}'
 propagationMethod: all
 siteSettings:
   252d2f43-ca1a-4f56-8b71-a79814479385: # Nuxt Craft POC
     enabledByDefault: true
-    hasUrls: true
-    template: home-page/_entry.twig
-    uriFormat: 'home-page/{slug}'
+    hasUrls: false
+    template: null
+    uriFormat: null
 type: channel

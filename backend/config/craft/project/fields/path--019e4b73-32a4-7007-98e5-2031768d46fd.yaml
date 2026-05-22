@@ -8,14 +8,14 @@ settings:
   showLabelField: false
   typeSettings:
     __assoc__:
-      0:
+      -
         - entry
         -
           __assoc__:
             -
               - sources
               - '*'
-      2:
+      -
         - asset
         -
           __assoc__:

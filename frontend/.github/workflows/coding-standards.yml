@@ -1,0 +1,38 @@
+name: Coding Standards
+
+on: [push, pull_request]
+
+jobs:
+  coding-standards:
+    name: "Apply ESLint and Prettier coding standards and formatting"
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
+
+    - name: Configure .npmrc for private npm packages
+      run: |
+        echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_READ_TOKEN }}" > .npmrc
+        echo "@effect-digital:registry=https://npm.pkg.github.com" >> .npmrc
+
+    - name: Install node modules
+      working-directory: frontend
+      run: bun install
+
+    - name: Run ESLint
+      working-directory: frontend
+      run: bun run lint
+
+    - name: Check formatting with Prettier
+      working-directory: frontend
+      run: bun run format:check
+
+    - name: Typecheck
+      working-directory: frontend
+      run: bun run typecheck

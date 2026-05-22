@@ -1,4 +1,5 @@
-baseUrl: $APP_URL
+baseUrl: 'https://backend.ddev.site:8443/'
+enabled: true
 handle: default
 hasUrls: true
 language: en

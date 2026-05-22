@@ -1,4 +1,4 @@
-dateModified: 1779383267
+dateModified: 1779469083
 fs:
   local:
     hasUrls: true
@@ -27,6 +27,11 @@ meta:
     afe9e402-86fd-43ad-b631-3a6dfa0e9aab: Website # Website
     c32741fa-98c6-4f0b-9be8-d25891e6b2bf: 'Public Schema' # Public Schema
     f17c14fe-dd0d-4dd2-85c8-0b33a6e2d625: Button # Button
+plugins:
+  aws-s3:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
 system:
   edition: solo
   live: true

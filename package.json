@@ -7,7 +7,11 @@
     "backend:start": "cd backend && ddev start",
     "backend:stop": "cd backend && ddev stop",
     "start": "concurrently \"bun run backend:start\" \"bun run dev\"",
-    "stop": "bun run backend:stop"
+    "stop": "bun run backend:stop",
+    "db:pull": "op document get \"Nuxt Craft - Database dump\" > /tmp/craft-db.sql && (cd backend && ddev import-db --file=/tmp/craft-db.sql) && rm /tmp/craft-db.sql",
+    "db:push": "cd backend && ddev export-db --gzip=false --file=- | op document edit \"Nuxt Craft - Database dump\" /dev/stdin",
+    "env:pull": "op item get \"Nuxt/Craft - Frontend ENV\" --fields notesPlain | tr -d '\"' > frontend/.env && op item get \"Nuxt/Craft - Backend ENV\" --fields notesPlain | tr -d '\"' > backend/.env && echo 'Env files updated.'",
+    "env:push": "op item edit \"Nuxt/Craft - Frontend ENV\" notesPlain=\"$(cat frontend/.env)\" && op item edit \"Nuxt/Craft - Backend ENV\" notesPlain=\"$(cat backend/.env)\" && echo 'Env files pushed to 1Password.'"
   },
   "devDependencies": {
     "concurrently": "^9.0.1"

@@ -8,7 +8,11 @@ const { fetchEntry } = useCraft()
 const { data, error } = await fetchEntry<{ data: HomePageQuery }>('home-page', homePageQuery)
 
 if (error.value) {
-    throw createError({ statusCode: 404, fatal: true })
+    throw createError({
+        statusCode: error.value.status ?? 500,
+        message: JSON.stringify(error.value.data ?? error.value.message),
+        fatal: true
+    })
 }
 
 const entry = computed(() => data.value?.data.entry)
@@ -29,20 +33,20 @@ const links = computed<ButtonProps[]>(() => {
 
 <template>
     <UContainer>
-        <UPageHero
-            :title="entry?.title ?? ''"
-            :headline="entry?.brow ?? ''"
-            :description="entry?.subtitle ?? ''"
-            :links="links"
-        >
-            <img
-                v-if="entry?.heroImage?.length"
-                :src="entry.heroImage[0]?.url ?? ''"
-                :alt="entry.heroImage[0]?.alt ?? ''"
-                :width="entry.heroImage[0]?.width ?? undefined"
-                :height="entry.heroImage[0]?.height ?? undefined"
-                class="rounded-3xl"
-            />
-        </UPageHero>
+            <UPageHero
+                :title="entry?.title ?? ''"
+                :headline="entry?.brow ?? ''"
+                :description="entry?.subtitle ?? ''"
+                :links="links"
+            >
+                <img
+                    v-if="entry?.heroImage?.length"
+                    :src="entry.heroImage[0]?.url ?? ''"
+                    :alt="entry.heroImage[0]?.alt ?? ''"
+                    :width="entry.heroImage[0]?.width ?? undefined"
+                    :height="entry.heroImage[0]?.height ?? undefined"
+                    class="rounded-3xl"
+                />
+            </UPageHero>
     </UContainer>
 </template>
