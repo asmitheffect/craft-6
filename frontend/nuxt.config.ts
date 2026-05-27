@@ -16,7 +16,8 @@ export default defineNuxtConfig({
     runtimeConfig: {
         craftApiToken: process.env.CRAFT_API_TOKEN,
         public: {
-            craftApiUrl: process.env.CRAFT_API_URL
+            craftApiUrl: process.env.CRAFT_API_URL,
+            draftContent: process.env.DRAFT_CONTENT === 'true'
         }
     },
 

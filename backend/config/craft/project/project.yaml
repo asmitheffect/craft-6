@@ -1,4 +1,4 @@
-dateModified: 1779906638
+dateModified: 1779912093
 fs:
   local:
     hasUrls: true
@@ -24,6 +24,7 @@ meta:
     019e648c-1f88-7256-b736-0b53bbe3d493: Images # Images
     019e6479-f8c9-7199-90a9-669420b13bec: 'Dynamic Section' # Dynamic Section
     33d9061a-dcf5-4ff1-a961-c6249a4acc75: Navigation # Navigation
+    98a91638-923d-4ee9-90da-dfb3b25c8920: 'News Category' # News Category
     99e8a67c-e894-4deb-8f96-9f3adbc00632: 'Hero Images' # Hero Images
     252d2f43-ca1a-4f56-8b71-a79814479385: 'Nuxt Craft POC' # Nuxt Craft POC
     599a02fe-381a-4444-bf17-cf7d7c76caa5: 'Nuxt Craft POC' # Nuxt Craft POC
@@ -31,7 +32,12 @@ meta:
     21204934-dd24-4d9c-99de-d76f991a2514: 'Home Page' # Home Page
     25559806-fdd9-4fe2-935a-1d12673d3970: Hero # Hero
     afe9e402-86fd-43ad-b631-3a6dfa0e9aab: Website # Website
+    b07b3884-69b8-418b-a138-49f7ca40e393: News # News
+    b378aa0f-8cb8-4532-8eb6-8a143b395815: 'News Article' # News Article
     c32741fa-98c6-4f0b-9be8-d25891e6b2bf: 'Public Schema' # Public Schema
+    cb6bf13a-8557-4610-a33a-8f96c2821e14: Summary # Summary
+    dec5ec42-860a-4b14-b9f3-0d711e838acd: Categories # Categories
+    e67cb159-ddb9-4292-8d9a-3b90230068f0: 'News Categories' # News Categories
     f17c14fe-dd0d-4dd2-85c8-0b33a6e2d625: Button # Button
     f92d6357-68de-4c78-a034-bcaa7c4968bc: 'Nav Item' # Nav Item
 plugins:

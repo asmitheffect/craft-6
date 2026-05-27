@@ -2,8 +2,7 @@ import type { DocumentNode } from 'graphql'
 
 export const useCraft = () => {
     const { isPreview, token, previewTimestamp } = usePreview()
-
-    const fetchEntry = <T>(key: string, document: DocumentNode, variables?: Record<string, unknown>) => {
+const fetchEntry = <T>(key: string, document: DocumentNode, variables?: Record<string, unknown>) => {
         const result = useAsyncData<T>(
             key,
             () => {
@@ -14,7 +13,11 @@ export const useCraft = () => {
             },
             {
                 watch: [isPreview, previewTimestamp],
-                getCachedData: (key, nuxtApp) => isPreview.value ? undefined : nuxtApp.payload.data[key]
+                getCachedData: (key, nuxtApp) => {
+                    if (isPreview.value) return undefined
+                    const cached = nuxtApp.payload.data[key] ?? nuxtApp.static.data[key]
+                    return cached ?? undefined
+                }
             }
         )
 

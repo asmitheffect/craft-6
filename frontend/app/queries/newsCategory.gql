@@ -1,0 +1,29 @@
+query NewsCategory($slug: [String]) {
+    category: entry(section: "newsCategories", slug: $slug) {
+        ... on newsCategory_Entry {
+            id
+            title
+            slug
+        }
+    }
+    articles: newsEntries(relatedToEntries: [{ section: "newsCategories", slug: $slug }]) {
+        ... on newsArticle_Entry {
+            id
+            title
+            slug
+            dateCreated
+            summary
+            heroImage {
+                url
+                alt
+            }
+            categories {
+                ... on newsCategory_Entry {
+                    id
+                    title
+                    slug
+                }
+            }
+        }
+    }
+}

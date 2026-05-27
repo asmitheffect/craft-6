@@ -2,5 +2,5 @@ adminOnly: 1
 allowSources: '*'
 enabledSiteGroups: '*'
 handle: desktopNav
-levels: '1'
+levels: 1
 title: 'Desktop Nav'

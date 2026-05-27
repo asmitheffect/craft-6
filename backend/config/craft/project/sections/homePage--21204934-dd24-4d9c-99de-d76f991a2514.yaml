@@ -15,7 +15,7 @@ propagationMethod: all
 siteSettings:
   252d2f43-ca1a-4f56-8b71-a79814479385: # Nuxt Craft POC
     enabledByDefault: true
-    hasUrls: false
+    hasUrls: true
     template: null
-    uriFormat: null
-type: channel
+    uriFormat: __home__
+type: single

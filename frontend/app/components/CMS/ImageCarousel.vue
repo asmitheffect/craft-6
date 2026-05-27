@@ -16,7 +16,8 @@ const block = defineProps<Partial<ImageCarousel_Entry>>()
             :prev="{ variant: 'solid' }"
             :next="{ variant: 'solid' }"
             :items="block.images"
-            :ui="{ item: 'basis-1/3' }"
+            :ui="{ item: 'basis-[80%] sm:basis-1/2 lg:basis-1/3' }"
+            class="mt-10"
         >
             <img
                 v-if="item?.url"

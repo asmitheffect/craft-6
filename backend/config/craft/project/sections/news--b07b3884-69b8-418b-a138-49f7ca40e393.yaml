@@ -2,24 +2,21 @@ defaultPlacement: end
 enableVersioning: true
 entryTypes:
   -
-    uid: f92d6357-68de-4c78-a034-bcaa7c4968bc # Nav Item
-handle: navigation
+    uid: b378aa0f-8cb8-4532-8eb6-8a143b395815 # News Article
+handle: news
 maxAuthors: 1
 minAuthors: 0
-name: Navigation
+name: News
 previewTargets:
   -
     label: 'Primary entry page'
     refresh: true
-    urlFormat: '{url}'
+    urlFormat: '$FRONTEND_URL/{uri}'
 propagationMethod: all
 siteSettings:
   252d2f43-ca1a-4f56-8b71-a79814479385: # Nuxt Craft POC
     enabledByDefault: true
-    hasUrls: false
+    hasUrls: true
     template: null
-    uriFormat: null
-structure:
-  maxLevels: 2
-  uid: 9c069c29-e0c0-4b0a-bab1-53e75e640951
-type: structure
+    uriFormat: 'news/{slug}'
+type: channel

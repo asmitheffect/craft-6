@@ -9,7 +9,8 @@ const nav = useState<NavigationQuery['navigationEntries']>('navigation')
 
 const toTo = (path: NavEntry['path']): string | undefined => {
     if (!path) return undefined
-    return path.element?.uri ? `/${path.element.uri}` : (path.url ?? undefined)
+    if (path.element?.uri) return path.element.uri === '__home__' ? '/' : `/${path.element.uri}`
+    return path.url ?? undefined
 }
 
 const toMenuItem = (item: NavEntry): NavigationMenuItem => {

@@ -1,5 +1,5 @@
 query HomePage($canonicalId: QueryArgument, $provisionalDrafts: Boolean) {
-    entry(section: "homePage", draftOf: $canonicalId, provisionalDrafts: $provisionalDrafts, status: null) {
+    entry(section: "homePage", draftOf: $canonicalId, provisionalDrafts: $provisionalDrafts) {
         ... on home_Entry {
             id
             title

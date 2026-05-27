@@ -1,0 +1,33 @@
+#import './blocks/imageCarousel.gql'
+
+query NewsArticle($slug: [String]) {
+    entry(section: "news", slug: $slug) {
+        ... on newsArticle_Entry {
+            id
+            title
+            slug
+            dateCreated
+            summary
+            heroImage {
+                url
+                alt
+                width
+                height
+            }
+            categories {
+                ... on newsCategory_Entry {
+                    id
+                    title
+                    slug
+                }
+            }
+            dynamicSection {
+                ... on EntryInterface {
+                    id
+                    __typename
+                }
+                ...ImageCarouselBlock
+            }
+        }
+    }
+}
