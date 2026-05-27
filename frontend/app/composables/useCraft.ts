@@ -1,4 +1,4 @@
-import { print, type DocumentNode } from 'graphql'
+import type { DocumentNode } from 'graphql'
 
 export const useCraft = () => {
     const { isPreview, token, previewTimestamp } = usePreview()
@@ -10,14 +10,7 @@ export const useCraft = () => {
                 const previewVars = isPreview.value
                     ? { token: token.value, provisionalDrafts: true }
                     : {}
-                return $fetch<T>('/api/craft', {
-                    method: 'POST',
-                    body: {
-                        query: print(document),
-                        operationName: document.definitions.find((d) => d.kind === 'OperationDefinition')?.name?.value,
-                        variables: { ...variables, ...previewVars }
-                    }
-                })
+                return craftFetch<T>(document, { ...variables, ...previewVars })
             },
             {
                 watch: [isPreview, previewTimestamp],

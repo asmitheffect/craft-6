@@ -6,7 +6,8 @@
         "php": "^8.5",
         "craftcms/cms": "^6.0.0",
         "laravel/framework": "^13.0",
-        "laravel/tinker": "^3.0"
+        "laravel/tinker": "^3.0",
+        "studioespresso/craft-navigate": "^6.0.0-alpha.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -59,7 +60,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "studioespresso/craft-navigate"
+            ]
         }
     },
     "config": {
@@ -72,5 +75,12 @@
             "php-http/discovery": true,
             "yiisoft/yii2-composer": true
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://composer.craftcms.com",
+            "canonical": false
+        }
+    ]
 }

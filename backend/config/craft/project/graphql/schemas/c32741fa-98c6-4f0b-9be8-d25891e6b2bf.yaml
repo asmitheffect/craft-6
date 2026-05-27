@@ -4,6 +4,7 @@ scope:
   - 'sites.252d2f43-ca1a-4f56-8b71-a79814479385:read' # Nuxt Craft POC
   - 'elements.drafts:read'
   - 'sections.21204934-dd24-4d9c-99de-d76f991a2514:read' # Home Page
+  - 'sections.33d9061a-dcf5-4ff1-a961-c6249a4acc75:read' # Navigation
   - 'sections.29654ab2-2c71-4eee-bfe9-acd73e87d94b:read' # Pages
   - 'nestedentryfields.019e4b73-44b1-7190-8b2e-e235f8f5c2bd:read' # Button Group
   - 'nestedentryfields.019e6479-f8c9-7199-90a9-669420b13bec:read' # Dynamic Section

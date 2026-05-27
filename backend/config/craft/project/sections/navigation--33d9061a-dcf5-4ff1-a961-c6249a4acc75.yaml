@@ -1,0 +1,24 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: f92d6357-68de-4c78-a034-bcaa7c4968bc # Nav Item
+handle: navigation
+maxAuthors: 1
+minAuthors: 0
+name: Navigation
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  252d2f43-ca1a-4f56-8b71-a79814479385: # Nuxt Craft POC
+    enabledByDefault: true
+    hasUrls: false
+    template: null
+    uriFormat: null
+structure:
+  maxLevels: 2
+  uid: 9c069c29-e0c0-4b0a-bab1-53e75e640951
+type: structure
