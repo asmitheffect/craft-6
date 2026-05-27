@@ -308,7 +308,7 @@ This exports the current DDEV database and overwrites the `Nuxt Craft - Database
 ## Troubleshooting
 
 **DDEV won't start**
-- Ensure Docker Desktop is running
+- Ensure OrbStack is running
 - Run `ddev doctor` to diagnose issues
 
 **SSL certificate errors in browser**
