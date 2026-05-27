@@ -1,4 +1,4 @@
-import ImageCarousel from '~/components/Blocks/ImageCarousel.vue'
+import ImageCarousel from '~/components/CMS/ImageCarousel.vue'
 import { registerCraftComponent } from '~/composables/useCraftComponents'
 
 export default defineNuxtPlugin(() => {

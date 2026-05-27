@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import type { EntryInterface } from '~~/types/graphql'
+import type { EntryInterface, DynamicSection_MatrixField } from '~~/types/graphql'
 
 type PageEntryData = EntryInterface & {
-    dynamicSection?: Array<
-        { __typename?: string | null; id?: string | null } & Record<string, unknown>
-    >
+    dynamicSection?: Array<DynamicSection_MatrixField>
 }
 
 defineProps<{
