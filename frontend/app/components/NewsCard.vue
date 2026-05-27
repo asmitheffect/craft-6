@@ -21,7 +21,7 @@ const date = computed(() =>
 </script>
 
 <template>
-    <UCard as="article" :ui="{ root: 'overflow-hidden' }" variant="solid">
+    <UCard as="article" :ui="{ root: 'overflow-hidden' }" variant="outline">
         <template #header>
             <NuxtLink :to="`/news/${article.slug}`">
                 <div class="aspect-video w-full bg-gray-100">

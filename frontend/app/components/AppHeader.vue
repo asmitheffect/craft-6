@@ -10,7 +10,7 @@ const nav = useState<NavigationQuery['navigationEntries']>('navigation')
 const toTo = (path: NavEntry['path']): string | undefined => {
     if (!path) return undefined
     if (path.element?.uri) return path.element.uri === '__home__' ? '/' : `/${path.element.uri}`
-    return path.url ?? undefined
+    return craftEntryUrl(path.url)
 }
 
 const toMenuItem = (item: NavEntry): NavigationMenuItem => {
@@ -36,5 +36,8 @@ const items = computed<NavigationMenuItem[]>(() =>
 <template>
     <UHeader title="Nuxt|Craft">
         <UNavigationMenu :items="items" />
+        <template #right>
+            <UColorModeButton />
+        </template>
     </UHeader>
 </template>

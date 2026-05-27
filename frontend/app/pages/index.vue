@@ -23,7 +23,7 @@ const links = computed<ButtonProps[]>(() => {
     return (
         entry.value.buttonGroup.map((button) => ({
             label: button?.title ?? undefined,
-            href: button?.path?.url ?? undefined,
+            href: craftEntryUrl(button?.path?.url),
             target: button?.path?.target ?? undefined,
             variant: (button?.variant ?? 'solid') as ButtonProps['variant']
         })) ?? []

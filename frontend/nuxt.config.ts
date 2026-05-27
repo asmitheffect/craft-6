@@ -16,10 +16,6 @@ export default defineNuxtConfig({
 
     css: ['~/assets/css/main.css'],
 
-    ui: {
-        colorMode: false
-    },
-
     runtimeConfig: {
         craftApiToken: process.env.CRAFT_API_TOKEN,
         public: {
