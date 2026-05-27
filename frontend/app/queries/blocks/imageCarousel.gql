@@ -1,0 +1,10 @@
+fragment ImageCarouselBlock on imageCarousel_Entry {
+    title
+    images {
+        id
+        url
+        title
+        width
+        height
+    }
+}

@@ -1,0 +1,25 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 8d46dada-ba93-4f90-ae8f-2699d3e56926 # Page Entry
+handle: pages
+maxAuthors: 1
+minAuthors: 0
+name: Pages
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: true
+    urlFormat: '$FRONTEND_URL/{uri}'
+propagationMethod: all
+siteSettings:
+  252d2f43-ca1a-4f56-8b71-a79814479385: # Nuxt Craft POC
+    enabledByDefault: true
+    hasUrls: true
+    template: pages/_entry.twig
+    uriFormat: '/{slug}'
+structure:
+  maxLevels: null
+  uid: 5e697cd0-7c3f-42cd-b1f2-8b9026d4616d
+type: structure

@@ -1,33 +1,39 @@
 import { print, type DocumentNode } from 'graphql'
 
 export const useCraft = () => {
-    const route = useRoute()
-    const { draftId, canonicalId, onCraftSave } = usePreview()
-    const isPreview = computed(() => !!route.query['x-craft-live-preview'])
+    const { isPreview, token, previewTimestamp } = usePreview()
 
     const fetchEntry = <T>(key: string, document: DocumentNode, variables?: Record<string, unknown>) => {
         const result = useAsyncData<T>(
             key,
             () => {
                 const previewVars = isPreview.value
-                    ? {
-                        draftId: draftId.value ? Number(draftId.value) : null,
-                        canonicalId: canonicalId.value ? Number(canonicalId.value) : null,
-                        provisionalDrafts: true
-                    }
+                    ? { token: token.value, provisionalDrafts: true }
                     : {}
                 return $fetch<T>('/api/craft', {
                     method: 'POST',
-                    body: { query: print(document), variables: { ...variables, ...previewVars } }
+                    body: {
+                        query: print(document),
+                        operationName: document.definitions.find((d) => d.kind === 'OperationDefinition')?.name?.value,
+                        variables: { ...variables, ...previewVars }
+                    }
                 })
             },
             {
+                watch: [isPreview, previewTimestamp],
                 getCachedData: (key, nuxtApp) => isPreview.value ? undefined : nuxtApp.payload.data[key]
             }
         )
 
         if (import.meta.client) {
-            onCraftSave(() => result.refresh())
+            const { refreshPreview } = usePreview()
+            const handler = (event: MessageEvent) => {
+                if (event.data?.event === 'saveDraft' || event.data?.event === 'saveElement') {
+                    refreshPreview()
+                }
+            }
+            onMounted(() => window.addEventListener('message', handler))
+            onUnmounted(() => window.removeEventListener('message', handler))
         }
 
         return result

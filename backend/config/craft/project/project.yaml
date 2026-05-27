@@ -1,4 +1,4 @@
-dateModified: 1779469083
+dateModified: 1779804736
 fs:
   local:
     hasUrls: true
@@ -12,6 +12,8 @@ fs:
 meta:
   __names__:
     1d927e1e-3c04-4893-ba84-0c3b6f2cbd39: Home # Home
+    7fac7754-1ae0-4f42-a117-4fff2e8aaddc: 'Image Carousel' # Image Carousel
+    8d46dada-ba93-4f90-ae8f-2699d3e56926: 'Page Entry' # Page Entry
     019e4b6e-586c-73bc-aa98-1a3958b331d7: Brow # Brow
     019e4b7e-9685-7233-a22c-87229fd3b6b0: Variant # Variant
     019e4b12-6935-703e-a5aa-26b64fffc513: 'Hero Image' # Hero Image
@@ -19,9 +21,12 @@ meta:
     019e4b72-eb51-7304-851f-4f6b4b83e6b6: Label # Label
     019e4b73-32a4-7007-98e5-2031768d46fd: Path # Path
     019e4b73-44b1-7190-8b2e-e235f8f5c2bd: 'Button Group' # Button Group
+    019e648c-1f88-7256-b736-0b53bbe3d493: Images # Images
+    019e6479-f8c9-7199-90a9-669420b13bec: 'Dynamic Section' # Dynamic Section
     99e8a67c-e894-4deb-8f96-9f3adbc00632: 'Hero Images' # Hero Images
     252d2f43-ca1a-4f56-8b71-a79814479385: 'Nuxt Craft POC' # Nuxt Craft POC
     599a02fe-381a-4444-bf17-cf7d7c76caa5: 'Nuxt Craft POC' # Nuxt Craft POC
+    29654ab2-2c71-4eee-bfe9-acd73e87d94b: Pages # Pages
     21204934-dd24-4d9c-99de-d76f991a2514: 'Home Page' # Home Page
     25559806-fdd9-4fe2-935a-1d12673d3970: Hero # Hero
     afe9e402-86fd-43ad-b631-3a6dfa0e9aab: Website # Website

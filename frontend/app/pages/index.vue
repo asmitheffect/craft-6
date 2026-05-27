@@ -33,20 +33,20 @@ const links = computed<ButtonProps[]>(() => {
 
 <template>
     <UContainer>
-            <UPageHero
-                :title="entry?.title ?? ''"
-                :headline="entry?.brow ?? ''"
-                :description="entry?.subtitle ?? ''"
-                :links="links"
-            >
-                <img
-                    v-if="entry?.heroImage?.length"
-                    :src="entry.heroImage[0]?.url ?? ''"
-                    :alt="entry.heroImage[0]?.alt ?? ''"
-                    :width="entry.heroImage[0]?.width ?? undefined"
-                    :height="entry.heroImage[0]?.height ?? undefined"
-                    class="rounded-3xl"
-                />
-            </UPageHero>
+        <UPageHero
+            :title="entry?.title ?? ''"
+            :headline="entry?.brow ?? ''"
+            :description="entry?.subtitle ?? ''"
+            :links="links"
+        >
+            <img
+                v-if="entry?.heroImage?.length"
+                :src="entry.heroImage[0]?.url ?? ''"
+                :alt="entry.heroImage[0]?.alt ?? ''"
+                :width="entry.heroImage[0]?.width ?? undefined"
+                :height="entry.heroImage[0]?.height ?? undefined"
+                class="rounded-3xl"
+            />
+        </UPageHero>
     </UContainer>
 </template>

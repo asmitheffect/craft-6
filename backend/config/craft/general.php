@@ -20,6 +20,8 @@ return GeneralConfig::create()
     ->preventUserEnumeration()
     // Prevent the front-end Login page
     ->loginPath(false)
+    // Headless mode — disables front-end routing and Twig template rendering
+    ->headlessMode(true)
     // Set the @webroot alias so the clear-caches command knows where to find CP resources
     ->aliases([
         '@webroot' => public_path(),

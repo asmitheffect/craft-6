@@ -1,32 +1,24 @@
-import { computed, onMounted, onUnmounted } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from '#app'
 
 export const usePreview = () => {
     const route = useRoute()
 
-    const draftId = computed<string | null>(() =>
-        Array.isArray(route.query.draftId) ? null : (route.query.draftId ?? null)
+    const token = ref<string | null>(
+        Array.isArray(route.query.token) ? null : (route.query.token ?? null)
     )
-    const canonicalId = computed<string | null>(() =>
-        Array.isArray(route.query.canonicalId) ? null : (route.query.canonicalId ?? null)
-    )
+    const previewTimestamp = ref(Date.now())
 
     const isPreview = computed(() => !!route.query['x-craft-live-preview'])
 
-    const onCraftSave = (callback: () => void) => {
-        const handler = (event: MessageEvent) => {
-            if (event.data?.event === 'saveDraft' || event.data?.event === 'saveElement') {
-                callback()
-            }
-        }
-        onMounted(() => window.addEventListener('message', handler))
-        onUnmounted(() => window.removeEventListener('message', handler))
+    const refreshPreview = () => {
+        previewTimestamp.value = Date.now()
     }
 
     return {
         isPreview,
-        draftId,
-        canonicalId,
-        onCraftSave,
+        token,
+        previewTimestamp,
+        refreshPreview
     }
 }

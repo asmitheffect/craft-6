@@ -1,0 +1,27 @@
+handle: dynamicSection
+instructions: null
+name: 'Dynamic Section'
+searchable: false
+settings:
+  createButtonLabel: null
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - 7fac7754-1ae0-4f42-a117-4fff2e8aaddc # Image Carousel
+        -
+          - group
+          - General
+  includeTableView: false
+  maxEntries: null
+  minEntries: null
+  pageSize: null
+  propagationKeyFormat: null
+  propagationMethod: all
+  viewMode: blocks
+translationKeyFormat: null
+translationMethod: site
+type: CraftCms\Cms\Field\Matrix

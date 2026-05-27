@@ -1,0 +1,17 @@
+#import './blocks/imageCarousel.gql'
+
+query PageEntry($slug: [String]) {
+    entry(slug: $slug) {
+        id
+        typeHandle
+        ... on pageEntry_Entry {
+            dynamicSection {
+                ... on EntryInterface {
+                    id
+                    __typename
+                }
+                ...ImageCarouselBlock
+            }
+        }
+    }
+}

@@ -1,12 +1,12 @@
 export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig(event)
-    const body = await readBody<{ query: string; variables?: Record<string, unknown> }>(event)
+    const body = await readBody<{ query: string; variables?: Record<string, unknown>; operationName?: string }>(event)
 
     return $fetch(config.public.craftApiUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            ...(config.craftApiToken && { Authorization: `Bearer ${config.craftApiToken}` })
+            ...(config.craftApiToken && { Authorization: `Bearer ${config.craftApiToken}` }),
         },
         body,
         onResponseError({ response }) {
