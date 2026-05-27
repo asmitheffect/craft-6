@@ -9,7 +9,8 @@ query NewsArticle($slug: [String]) {
             dateCreated
             summary
             heroImage {
-                url
+                thumb: url(width: 400, height: 400, mode: "crop")
+                full: url(width: 1200, height: 630, mode: "crop")
                 alt
                 width
                 height

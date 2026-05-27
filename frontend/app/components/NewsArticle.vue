@@ -35,11 +35,9 @@ const date = computed(() =>
                 <time v-if="date" class="text-sm text-gray-400">{{ date }}</time>
             </div>
             <img
-                v-if="article.heroImage?.[0]?.url"
-                :src="article.heroImage[0].url ?? ''"
+                v-if="article.heroImage?.[0]?.full"
+                :src="article.heroImage[0].full ?? ''"
                 :alt="article.heroImage[0].alt ?? ''"
-                :width="article.heroImage[0].width ?? undefined"
-                :height="article.heroImage[0].height ?? undefined"
                 class="mb-8 w-full rounded-xl object-cover"
             />
             <CraftComponent

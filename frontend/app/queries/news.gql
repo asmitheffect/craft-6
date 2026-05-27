@@ -7,7 +7,7 @@ query NewsListing {
             dateCreated
             summary
             heroImage {
-                url
+                url(width: 400, height: 260, mode: "crop")
                 alt
             }
             categories {

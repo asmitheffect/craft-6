@@ -9955,7 +9955,7 @@ export type NewsArticleQueryVariables = Exact<{
 
 
 export type NewsArticleQuery = { entry:
-    | { id: string | null, title: string | null, slug: string | null, dateCreated: unknown, summary: string | null, heroImage: Array<{ url: string | null, alt: string | null, width: number | null, height: number | null } | null>, categories: Array<
+    | { id: string | null, title: string | null, slug: string | null, dateCreated: unknown, summary: string | null, heroImage: Array<{ alt: string | null, width: number | null, height: number | null, thumb: string | null, full: string | null } | null>, categories: Array<
         | { id: string | null, title: string | null, slug: string | null }
         | Record<PropertyKey, never>
        | null>, dynamicSection: Array<{ __typename: 'imageCarousel_Entry', id: string | null, title: string | null, images: Array<{ id: string | null, url: string | null, title: string | null, width: number | null, height: number | null } | null> } | null> }
@@ -9964,7 +9964,6 @@ export type NewsArticleQuery = { entry:
 
 export type NewsCategoryQueryVariables = Exact<{
   slug?: Array<string | null | undefined> | string | null | undefined;
-  categorySlug?: Array<unknown> | unknown | null | undefined;
 }>;
 
 
