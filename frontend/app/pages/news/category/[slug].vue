@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import newsCategoryQuery from '@/queries/newsCategory.gql'
 import type { NewsCategoryQuery } from '~~/types/graphql'
-import type { NewsCategoryDetail, NewsCategoryArticle } from '@/types/news'
+import type { NewsCategoryDetail, NewsCategoryArticle, ArticleCategory } from '@/types/news'
 
 const route = useRoute()
 const { fetchEntry } = useCraft()
@@ -31,17 +31,33 @@ const articles = computed(() =>
 if (!category.value) {
     throw createError({ statusCode: 404, statusMessage: 'Category not found', fatal: true })
 }
+
+const posts = computed(() =>
+    articles.value.map((article) => {
+        const firstCategory = (article.categories ?? [])
+            .flatMap((c): ArticleCategory[] => (c ? [c] : []))[0] ?? null
+
+        return {
+            title: article.title ?? '',
+            description: article.summary ?? undefined,
+            image: article.heroImage?.[0]?.url ?? undefined,
+            date: article.dateCreated ? new Date(article.dateCreated as string) : undefined,
+            badge: firstCategory ? { label: firstCategory.title ?? '' } : undefined,
+            to: `/news/${article.slug}`,
+        }
+    })
+)
 </script>
 
 <template>
     <UContainer>
         <UPageHeader :title="category?.title ?? ''" />
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-10">
-            <NewsCard
-                v-for="article in articles"
-                :key="article.id ?? undefined"
-                :article="article"
+        <UBlogPosts class="mt-10">
+            <UBlogPost
+                v-for="(post, index) in posts"
+                :key="index"
+                v-bind="post"
             />
-        </div>
+        </UBlogPosts>
     </UContainer>
 </template>
