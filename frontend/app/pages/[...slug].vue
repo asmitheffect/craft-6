@@ -17,7 +17,11 @@ const { data, error } = await fetchEntry<{ data: { entry: EntryInterface | null 
 
 const entry = computed(() => data.value?.data.entry)
 
-const { templateComponent } = usePageTemplate(entry)
+const templateComponent = computed(() => {
+    const handle = entry.value?.typeHandle
+    if (!handle) return null
+    return resolveComponent(handle.charAt(0).toUpperCase() + handle.slice(1))
+})
 
 if (error.value) {
     throw createError({
