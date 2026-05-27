@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import newsCategoryQuery from '@/queries/newsCategory.gql'
 import type { NewsCategoryQuery } from '~~/types/graphql'
-import type { NewsCategoryDetail, NewsCategoryArticle, ArticleCategory } from '@/types/news'
+import type { NewsCategoryDetail, NewsCategoryArticle } from '@/types/news'
 
 const route = useRoute()
 const { fetchEntry } = useCraft()
@@ -25,39 +25,20 @@ if (error.value) {
 const category = computed(() => data.value?.data.category as NewsCategoryDetail | null | undefined)
 
 const articles = computed(() =>
-    (data.value?.data.articles ?? []).flatMap((e): NewsCategoryArticle[] => (e ? [e] : []))
+    (data.value?.data.articles ?? []).flatMap((e): NewsCategoryArticle[] => (e ? [e] : [])).map((e) => ({
+        ...e,
+        dateCreated: e.dateCreated as string | null | undefined,
+    }))
 )
 
 if (!category.value) {
     throw createError({ statusCode: 404, statusMessage: 'Category not found', fatal: true })
 }
-
-const posts = computed(() =>
-    articles.value.map((article) => {
-        const firstCategory = (article.categories ?? [])
-            .flatMap((c): ArticleCategory[] => (c ? [c] : []))[0] ?? null
-
-        return {
-            title: article.title ?? '',
-            description: article.summary ?? undefined,
-            image: article.heroImage?.[0]?.url ?? undefined,
-            date: article.dateCreated ? new Date(article.dateCreated as string) : undefined,
-            badge: firstCategory ? { label: firstCategory.title ?? '' } : undefined,
-            to: `/news/${article.slug}`,
-        }
-    })
-)
 </script>
 
 <template>
     <UContainer>
         <UPageHeader :title="category?.title ?? ''" />
-        <UBlogPosts class="mt-10">
-            <UBlogPost
-                v-for="(post, index) in posts"
-                :key="index"
-                v-bind="post"
-            />
-        </UBlogPosts>
+        <NewsGrid :articles="articles" class="mt-10" />
     </UContainer>
 </template>
