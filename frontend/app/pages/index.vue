@@ -3,9 +3,7 @@ import homePageQuery from '~/queries/homePage.gql'
 import type { HomePageQuery } from '~~/types/graphql'
 import type { ButtonProps } from '@nuxt/ui'
 
-const { fetchEntry } = useCraft()
-
-const { data, error } = await fetchEntry<{ data: HomePageQuery }>('home-page', homePageQuery)
+const { data, error } = await useCraft<{ data: HomePageQuery }>('home-page', homePageQuery)
 
 if (error.value) {
     throw createError({
@@ -15,7 +13,7 @@ if (error.value) {
     })
 }
 
-const entry = computed(() => data.value?.data.entry)
+const entry = computed(() => data.value?.data?.entry)
 
 const links = computed<ButtonProps[]>(() => {
     if (!entry.value) return []

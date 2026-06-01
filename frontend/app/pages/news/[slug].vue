@@ -4,11 +4,9 @@ import type { NewsArticleQuery } from '~~/types/graphql'
 import type { NewsArticleDetail } from '@/types/news'
 
 const route = useRoute()
-const { fetchEntry } = useCraft()
-
 const slug = route.params.slug as string
 
-const { data, error } = await fetchEntry<{ data: NewsArticleQuery }>(
+const { data, error } = await useCraft<{ data: NewsArticleQuery }>(
     `news-${slug}`,
     newsArticleQuery,
     { slug: [slug] }
@@ -22,7 +20,7 @@ if (error.value) {
     })
 }
 
-const article = computed(() => data.value?.data.entry as NewsArticleDetail | null | undefined)
+const article = computed(() => data.value?.data?.entry as NewsArticleDetail | null | undefined)
 
 if (!article.value) {
     throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true })

@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import newsListingQuery from '@/queries/news.gql'
 import type { NewsListingQuery } from '~~/types/graphql'
+import type { NewsGridArticle } from '@/types/news'
 
-const { fetchEntry } = useCraft()
-
-const { data, error } = await fetchEntry<{ data: NewsListingQuery }>(
+const { data, error } = await useCraftMany<{ data: NewsListingQuery }>(
     'news-listing',
     newsListingQuery
 )
@@ -17,7 +16,9 @@ if (error.value) {
     })
 }
 
-const articles = computed(() => (data.value?.data.newsEntries ?? []).flatMap((e) => (e ? [e] : [])))
+const articles = computed(() =>
+    (data.value?.data?.newsEntries ?? []).flatMap((e) => (e ? [e as NewsGridArticle] : []))
+)
 </script>
 
 <template>

@@ -10,7 +10,7 @@ name: 'Home Page'
 previewTargets:
   -
     label: 'Primary entry page'
-    urlFormat: 'http://localhost:3000/?token={previewToken}&x-craft-live-preview=1&draftId={draftId}&canonicalId={canonicalId}'
+    urlFormat: 'http://localhost:3000/?x-craft-live-preview=1&draftId={draftId}&canonicalId={canonicalId}'
 propagationMethod: all
 siteSettings:
   252d2f43-ca1a-4f56-8b71-a79814479385: # Nuxt Craft POC

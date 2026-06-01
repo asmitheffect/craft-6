@@ -1,39 +1,72 @@
-import type { DocumentNode } from 'graphql'
+import { print, type DocumentNode } from 'graphql'
+import type { AsyncDataOptions } from 'nuxt/app'
 
-export const useCraft = () => {
-    const { isPreview, token, previewTimestamp } = usePreview()
-const fetchEntry = <T>(key: string, document: DocumentNode, variables?: Record<string, unknown>) => {
-        const result = useAsyncData<T>(
-            key,
-            () => {
-                const previewVars = isPreview.value
-                    ? { token: token.value, provisionalDrafts: true }
-                    : {}
-                return craftFetch<T>(document, { ...variables, ...previewVars })
-            },
-            {
-                watch: [isPreview, previewTimestamp],
-                getCachedData: (key, nuxtApp) => {
-                    if (isPreview.value) return undefined
-                    const cached = nuxtApp.payload.data[key] ?? nuxtApp.static.data[key]
-                    return cached ?? undefined
-                }
-            }
-        )
+const usePreviewParams = () => {
+    const route = useRoute()
 
-        if (import.meta.client) {
-            const { refreshPreview } = usePreview()
-            const handler = (event: MessageEvent) => {
-                if (event.data?.event === 'saveDraft' || event.data?.event === 'saveElement') {
-                    refreshPreview()
-                }
-            }
-            onMounted(() => window.addEventListener('message', handler))
-            onUnmounted(() => window.removeEventListener('message', handler))
+    const isPreview = computed(() => !!route.query['x-craft-live-preview'])
+
+    const draftId = computed<number | null>(() => {
+        const val = route.query.draftId
+        const parsed = parseInt(Array.isArray(val) ? (val[0] ?? '') : (val ?? ''))
+        return isNaN(parsed) ? null : parsed
+    })
+
+    const canonicalId = computed<number | null>(() => {
+        const val = route.query.canonicalId
+        const parsed = parseInt(Array.isArray(val) ? (val[0] ?? '') : (val ?? ''))
+        return isNaN(parsed) ? null : parsed
+    })
+
+    return { isPreview, draftId, canonicalId }
+}
+
+const craftFetch = <T>(
+    document: DocumentNode,
+    variables?: Record<string, unknown>,
+    preview?: Record<string, unknown>
+) =>
+    $fetch<T>('/api/craft', {
+        method: 'POST',
+        body: {
+            query: print(document),
+            operationName: document.definitions.find((d) => d.kind === 'OperationDefinition')?.name
+                ?.value,
+            variables,
+            ...preview
         }
+    })
 
-        return result
-    }
+export const useCraft = <T>(
+    key: string,
+    document: DocumentNode,
+    variables?: Record<string, unknown>,
+    options?: AsyncDataOptions<T>
+) => {
+    const { isPreview, draftId, canonicalId } = usePreviewParams()
 
-    return { fetchEntry }
+    return useAsyncData<T>(
+        key,
+        () =>
+            craftFetch<T>(
+                document,
+                variables,
+                isPreview.value
+                    ? {
+                          draftId: draftId.value ?? undefined,
+                          canonicalId: canonicalId.value ?? undefined
+                      }
+                    : undefined
+            ),
+        options
+    )
+}
+
+export const useCraftMany = <T>(
+    key: string,
+    document: DocumentNode,
+    variables?: Record<string, unknown>,
+    options?: AsyncDataOptions<T>
+) => {
+    return useAsyncData<T>(key, () => craftFetch<T>(document, variables), options)
 }

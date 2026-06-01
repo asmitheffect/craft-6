@@ -1,7 +1,7 @@
 #import './blocks/imageCarousel.gql'
 
-query NewsArticle($slug: [String]) {
-    entry(section: "news", slug: $slug) {
+query NewsArticle($slug: [String], $draftId: Int, $id: [QueryArgument], $status: [String], $provisionalDrafts: Boolean) {
+    entry(section: "news", slug: $slug, draftId: $draftId, id: $id, status: $status, provisionalDrafts: $provisionalDrafts) {
         ... on newsArticle_Entry {
             id
             title

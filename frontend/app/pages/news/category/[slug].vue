@@ -4,11 +4,9 @@ import type { NewsCategoryQuery } from '~~/types/graphql'
 import type { NewsCategoryDetail, NewsCategoryArticle } from '@/types/news'
 
 const route = useRoute()
-const { fetchEntry } = useCraft()
-
 const slug = route.params.slug as string
 
-const { data, error } = await fetchEntry<{ data: NewsCategoryQuery }>(
+const { data, error } = await useCraftMany<{ data: NewsCategoryQuery }>(
     `news-category-${slug}`,
     newsCategoryQuery,
     { slug: [slug] }
@@ -22,10 +20,10 @@ if (error.value) {
     })
 }
 
-const category = computed(() => data.value?.data.category as NewsCategoryDetail | null | undefined)
+const category = computed(() => data.value?.data?.category as NewsCategoryDetail | null | undefined)
 
 const articles = computed(() =>
-    (data.value?.data.articles ?? []).flatMap((e): NewsCategoryArticle[] => (e ? [e] : [])).map((e) => ({
+    (data.value?.data?.articles ?? []).flatMap((e): NewsCategoryArticle[] => (e ? [e] : [])).map((e) => ({
         ...e,
         dateCreated: e.dateCreated as string | null | undefined,
     }))

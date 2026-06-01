@@ -3,19 +3,16 @@ import entryQuery from '~/queries/pageEntry.gql'
 import type { EntryInterface } from '~~/types/graphql'
 
 const route = useRoute()
-const { fetchEntry } = useCraft()
-
 const slugParts = route.params.slug as string[] | undefined
-const slug =
-    (Array.isArray(slugParts) && slugParts.length > 0 ? slugParts.at(-1) : undefined) ?? '__home__'
+const slug = (Array.isArray(slugParts) && slugParts.length > 0 ? slugParts.at(-1) : undefined) ?? '__home__'
 
-const { data, error } = await fetchEntry<{ data: { entry: EntryInterface | null } }>(
+const { data, error } = await useCraft<{ data: { entry: EntryInterface | null } }>(
     `entry-${slug}`,
     entryQuery,
     { slug: [slug] }
 )
 
-const entry = computed(() => data.value?.data.entry)
+const entry = computed(() => data.value?.data?.entry)
 
 const templateComponent = computed(() => {
     const handle = entry.value?.typeHandle

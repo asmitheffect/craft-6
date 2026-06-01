@@ -1,7 +1,7 @@
 #import './blocks/imageCarousel.gql'
 
-query PageEntry($slug: [String]) {
-    entry(slug: $slug) {
+query PageEntry($slug: [String], $draftId: Int, $id: [QueryArgument], $status: [String], $provisionalDrafts: Boolean) {
+    entry(slug: $slug, draftId: $draftId, id: $id, status: $status, provisionalDrafts: $provisionalDrafts) {
         id
         typeHandle
         ... on pageEntry_Entry {
