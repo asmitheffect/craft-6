@@ -6,19 +6,11 @@ import type { NewsArticleDetail } from '@/types/news'
 const route = useRoute()
 const slug = route.params.slug as string
 
-const { data, error } = await useCraft<{ data: NewsArticleQuery }>(
+const { data } = await useCraft<{ data: NewsArticleQuery }>(
     `news-${slug}`,
     newsArticleQuery,
     { slug: [slug] }
 )
-
-if (error.value) {
-    throw createError({
-        statusCode: error.value.status ?? 500,
-        message: JSON.stringify(error.value.data ?? error.value.message),
-        fatal: true
-    })
-}
 
 const article = computed(() => data.value?.data?.entry as NewsArticleDetail | null | undefined)
 

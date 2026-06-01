@@ -6,19 +6,11 @@ import type { NewsCategoryDetail, NewsCategoryArticle } from '@/types/news'
 const route = useRoute()
 const slug = route.params.slug as string
 
-const { data, error } = await useCraftMany<{ data: NewsCategoryQuery }>(
+const { data } = await useCraftMany<{ data: NewsCategoryQuery }>(
     `news-category-${slug}`,
     newsCategoryQuery,
     { slug: [slug] }
 )
-
-if (error.value) {
-    throw createError({
-        statusCode: error.value.status ?? 500,
-        message: JSON.stringify(error.value.data ?? error.value.message),
-        fatal: true
-    })
-}
 
 const category = computed(() => data.value?.data?.category as NewsCategoryDetail | null | undefined)
 

@@ -3,15 +3,7 @@ import homePageQuery from '~/queries/homePage.gql'
 import type { HomePageQuery } from '~~/types/graphql'
 import type { ButtonProps } from '@nuxt/ui'
 
-const { data, error } = await useCraft<{ data: HomePageQuery }>('home-page', homePageQuery)
-
-if (error.value) {
-    throw createError({
-        statusCode: error.value.status ?? 500,
-        message: JSON.stringify(error.value.data ?? error.value.message),
-        fatal: true
-    })
-}
+const { data } = await useCraft<{ data: HomePageQuery }>('home-page', homePageQuery)
 
 const entry = computed(() => data.value?.data?.entry)
 

@@ -6,7 +6,7 @@ const route = useRoute()
 const slugParts = route.params.slug as string[] | undefined
 const slug = (Array.isArray(slugParts) && slugParts.length > 0 ? slugParts.at(-1) : undefined) ?? '__home__'
 
-const { data, error } = await useCraft<{ data: { entry: EntryInterface | null } }>(
+const { data } = await useCraft<{ data: { entry: EntryInterface | null } }>(
     `entry-${slug}`,
     entryQuery,
     { slug: [slug] }
@@ -19,14 +19,6 @@ const templateComponent = computed(() => {
     if (!handle) return null
     return resolveComponent(handle.charAt(0).toUpperCase() + handle.slice(1))
 })
-
-if (error.value) {
-    throw createError({
-        statusCode: error.value.status ?? 500,
-        message: JSON.stringify(error.value.data ?? error.value.message),
-        fatal: true
-    })
-}
 
 if (!entry.value || templateComponent.value === null) {
     throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })

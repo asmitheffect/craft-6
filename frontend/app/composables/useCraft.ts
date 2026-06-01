@@ -21,21 +21,30 @@ const usePreviewParams = () => {
     return { isPreview, draftId, canonicalId }
 }
 
-const craftFetch = <T>(
+const craftFetch = async <T>(
     document: DocumentNode,
     variables?: Record<string, unknown>,
     preview?: Record<string, unknown>
-) =>
-    $fetch<T>('/api/craft', {
-        method: 'POST',
-        body: {
-            query: print(document),
-            operationName: document.definitions.find((d) => d.kind === 'OperationDefinition')?.name
-                ?.value,
-            variables,
-            ...preview
-        }
-    })
+) => {
+    try {
+        return await $fetch<T>('/api/craft', {
+            method: 'POST',
+            body: {
+                query: print(document),
+                operationName: document.definitions.find((d) => d.kind === 'OperationDefinition')?.name?.value,
+                variables,
+                ...preview
+            }
+        })
+    } catch (e: unknown) {
+        const err = e as { status?: number; data?: unknown; message?: string }
+        throw createError({
+            statusCode: err.status ?? 500,
+            message: JSON.stringify(err.data ?? err.message),
+            fatal: true
+        })
+    }
+}
 
 export const useCraft = <T>(
     key: string,
