@@ -1,6 +1,7 @@
 import { print, type DocumentNode } from 'graphql'
 import type { MaybeRefOrGetter } from 'vue'
 import type { AsyncDataOptions } from 'nuxt/app'
+import type { NuxtError } from '#app'
 
 const usePreviewParams = () => {
     const route = useRoute()
@@ -39,10 +40,11 @@ const craftFetch = async <T>(
             }
         })
     } catch (e: unknown) {
-        const err = e as { status?: number; data?: unknown; message?: string }
+        const knownError = e as NuxtError
+
         throw createError({
-            statusCode: err.status ?? 500,
-            message: JSON.stringify(err.data ?? err.message),
+            statusCode: knownError.status ?? 500,
+            message: JSON.stringify(knownError.data ?? knownError.message),
             fatal: true
         })
     }
