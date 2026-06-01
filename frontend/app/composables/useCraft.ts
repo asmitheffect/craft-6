@@ -1,4 +1,5 @@
 import { print, type DocumentNode } from 'graphql'
+import type { MaybeRefOrGetter } from 'vue'
 import type { AsyncDataOptions } from 'nuxt/app'
 
 const usePreviewParams = () => {
@@ -31,7 +32,8 @@ const craftFetch = async <T>(
             method: 'POST',
             body: {
                 query: print(document),
-                operationName: document.definitions.find((d) => d.kind === 'OperationDefinition')?.name?.value,
+                operationName: document.definitions.find((d) => d.kind === 'OperationDefinition')
+                    ?.name?.value,
                 variables,
                 ...preview
             }
@@ -47,9 +49,9 @@ const craftFetch = async <T>(
 }
 
 export const useCraft = <T>(
-    key: string,
+    key: MaybeRefOrGetter<string>,
     document: DocumentNode,
-    variables?: Record<string, unknown>,
+    variables?: MaybeRefOrGetter<Record<string, unknown>>,
     options?: AsyncDataOptions<T>
 ) => {
     const { isPreview, draftId, canonicalId } = usePreviewParams()
@@ -59,7 +61,7 @@ export const useCraft = <T>(
         () =>
             craftFetch<T>(
                 document,
-                variables,
+                toValue(variables),
                 isPreview.value
                     ? {
                           draftId: draftId.value ?? undefined,
@@ -72,10 +74,10 @@ export const useCraft = <T>(
 }
 
 export const useCraftMany = <T>(
-    key: string,
+    key: MaybeRefOrGetter<string>,
     document: DocumentNode,
-    variables?: Record<string, unknown>,
+    variables?: MaybeRefOrGetter<Record<string, unknown>>,
     options?: AsyncDataOptions<T>
 ) => {
-    return useAsyncData<T>(key, () => craftFetch<T>(document, variables), options)
+    return useAsyncData<T>(key, () => craftFetch<T>(document, toValue(variables)), options)
 }

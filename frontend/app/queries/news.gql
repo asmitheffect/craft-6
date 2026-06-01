@@ -1,5 +1,6 @@
-query NewsListing {
-    newsEntries {
+query NewsListing($limit: Int, $offset: Int) {
+    total: entryCount(section: "news")
+    newsEntries(limit: $limit, offset: $offset) {
         ... on newsArticle_Entry {
             id
             title
