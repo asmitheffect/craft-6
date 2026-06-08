@@ -10968,7 +10968,23 @@ export type PageEntryQuery = { entry:
     | { id: string | null, typeHandle: string }
    | null };
 
+export type SearchQueryVariables = Exact<{
+  q?: string | null | undefined;
+}>;
+
+
+export type SearchQuery = { total: number, entries: Array<
+    | { id: string | null, title: string | null, url: string | null }
+    | { id: string | null, title: string | null, url: string | null }
+    | { id: string | null, title: string | null, url: string | null }
+    | { id: string | null, title: string | null, url: string | null }
+    | { summary: string | null, id: string | null, title: string | null, url: string | null }
+    | { id: string | null, title: string | null, url: string | null }
+    | { uri: string | null, id: string | null, title: string | null, url: string | null }
+    | { id: string | null, title: string | null, url: string | null }
+   | null> | null };
+
 export type SiteSettingsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SiteSettingsQuery = { globalsEntries: Array<{ copyright: string | null } | null> | null };
+export type SiteSettingsQuery = { globalsEntries: Array<{ title: string | null, copyright: string | null } | null> | null };

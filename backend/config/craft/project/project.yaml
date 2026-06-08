@@ -1,4 +1,4 @@
-dateModified: 1780331028
+dateModified: 1780909091
 fs:
   local:
     hasUrls: true
@@ -59,10 +59,3 @@ system:
   name: 'Nuxt Craft POC'
   schemaVersion: 6.0.0.2
   timeZone: UTC
-users:
-  allowPublicRegistration: false
-  defaultGroup: null
-  photoSubpath: null
-  photoVolumeUid: null
-  require2fa: false
-  requireEmailVerification: true
