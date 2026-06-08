@@ -1,4 +1,4 @@
-dateModified: 1779912093
+dateModified: 1780331028
 fs:
   local:
     hasUrls: true
@@ -21,6 +21,7 @@ meta:
     019e4b72-eb51-7304-851f-4f6b4b83e6b6: Label # Label
     019e4b73-32a4-7007-98e5-2031768d46fd: Path # Path
     019e4b73-44b1-7190-8b2e-e235f8f5c2bd: 'Button Group' # Button Group
+    019e83f8-0e35-70ee-9caf-40c0ef6ca4a9: Copyright # Copyright
     019e648c-1f88-7256-b736-0b53bbe3d493: Images # Images
     019e6479-f8c9-7199-90a9-669420b13bec: 'Dynamic Section' # Dynamic Section
     33d9061a-dcf5-4ff1-a961-c6249a4acc75: Navigation # Navigation
@@ -33,9 +34,11 @@ meta:
     25559806-fdd9-4fe2-935a-1d12673d3970: Hero # Hero
     afe9e402-86fd-43ad-b631-3a6dfa0e9aab: Website # Website
     b07b3884-69b8-418b-a138-49f7ca40e393: News # News
+    b9cd0953-226d-40e4-aa49-5424e9909b6e: Globals # Globals
     b378aa0f-8cb8-4532-8eb6-8a143b395815: 'News Article' # News Article
     c32741fa-98c6-4f0b-9be8-d25891e6b2bf: 'Public Schema' # Public Schema
     cb6bf13a-8557-4610-a33a-8f96c2821e14: Summary # Summary
+    d6396551-e263-4c62-8bf6-ac257f8cf0b4: 'site Settings' # site Settings
     dec5ec42-860a-4b14-b9f3-0d711e838acd: Categories # Categories
     e67cb159-ddb9-4292-8d9a-3b90230068f0: 'News Categories' # News Categories
     f17c14fe-dd0d-4dd2-85c8-0b33a6e2d625: Button # Button

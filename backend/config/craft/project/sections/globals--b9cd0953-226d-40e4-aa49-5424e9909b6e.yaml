@@ -2,20 +2,20 @@ defaultPlacement: end
 enableVersioning: true
 entryTypes:
   -
-    uid: 1d927e1e-3c04-4893-ba84-0c3b6f2cbd39 # Home
-handle: homePage
+    uid: d6396551-e263-4c62-8bf6-ac257f8cf0b4 # site Settings
+handle: globals
 maxAuthors: 1
 minAuthors: 0
-name: 'Home Page'
+name: Globals
 previewTargets:
   -
     label: 'Primary entry page'
-    urlFormat: 'http://localhost:3000/?token={previewToken}&x-craft-live-preview=1&draftId={draftId}&canonicalId={canonicalId}'
+    urlFormat: '{url}'
 propagationMethod: all
 siteSettings:
   252d2f43-ca1a-4f56-8b71-a79814479385: # Nuxt Craft POC
     enabledByDefault: true
-    hasUrls: true
+    hasUrls: false
     template: null
-    uriFormat: __home__
-type: single
+    uriFormat: null
+type: channel

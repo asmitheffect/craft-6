@@ -11,11 +11,7 @@ defineProps<{
 </script>
 
 <template>
-    <div>
-        <CraftComponent
-            v-for="block in entry.dynamicSection"
-            :key="block.id ?? undefined"
-            :data="block"
-        />
-    </div>
+    <template v-for="block in entry.dynamicSection" :key="block.id ?? undefined">
+        <CraftComponent :data="block" />
+    </template>
 </template>
