@@ -1,6 +1,6 @@
 #import './blocks/imageCarousel.gql'
 
-query NewsArticle($slug: [String], $draftId: Int, $id: [QueryArgument], $status: [String], $provisionalDrafts: Boolean) {
+query NewsArticle($slug: [String], $draftId: Int, $id: [QueryArgument], $status: [String], $provisionalDrafts: Boolean, $categoryIds: [QueryArgument]) {
     entry(section: "news", slug: $slug, draftId: $draftId, id: $id, status: $status, provisionalDrafts: $provisionalDrafts) {
         ... on newsArticle_Entry {
             id
@@ -28,6 +28,30 @@ query NewsArticle($slug: [String], $draftId: Int, $id: [QueryArgument], $status:
                     __typename
                 }
                 ...ImageCarouselBlock
+            }
+        }
+    }
+    related: newsEntries(
+        relatedToEntries: [{ id: $categoryIds, field: "categories" }]
+        notRelatedTo: $id
+        limit: 3
+    ) {
+        ... on newsArticle_Entry {
+            id
+            title
+            slug
+            dateCreated
+            summary
+            heroImage {
+                url(width: 400, height: 260, mode: "crop")
+                alt
+            }
+            categories {
+                ... on newsCategory_Entry {
+                    id
+                    title
+                    slug
+                }
             }
         }
     }

@@ -3,7 +3,7 @@ import newsListingQuery from '@/queries/news.gql'
 import type { NewsListingQuery } from '~~/types/graphql'
 import type { NewsGridArticle } from '@/types/news'
 
-const PER_PAGE = 1
+const PER_PAGE = 3
 const route = useRoute()
 const router = useRouter()
 const page = computed({

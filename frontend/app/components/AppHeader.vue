@@ -7,6 +7,7 @@ const { navItems } = useNavigation()
         <UNavigationMenu :items="navItems" />
         <template #right>
             <UColorModeButton />
+            <UButton to="/search" icon="i-lucide-search" variant="ghost" square color="neutral" />
         </template>
     </UHeader>
 </template>

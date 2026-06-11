@@ -15,5 +15,5 @@ export interface NewsGridArticle {
     dateCreated?: string | null
     summary?: string | null
     heroImage?: Array<{ url?: string | null; alt?: string | null } | null> | null
-    categories?: Array<{ id?: string | null; title?: string | null; slug?: string | null } | null> | null
+    categories?: Array<{ id: string | null; title: string | null; slug: string | null } | null> | null
 }

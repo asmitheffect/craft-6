@@ -1,23 +1,19 @@
 <script setup lang="ts">
-import type { NewsArticleDetail, ArticleCategory } from '@/types/news'
+import type { NewsArticleDetail, NewsGridArticle, ArticleCategory } from '@/types/news'
 import type { DynamicSection_MatrixField } from '~~/types/graphql'
 
 const props = defineProps<{
     article: NewsArticleDetail
+    related?: NewsGridArticle[]
 }>()
 
 const categories = computed(() =>
     (props.article.categories ?? []).flatMap((c): ArticleCategory[] => (c ? [c] : []))
 )
 
+const dateCreated = computed(() => props.article.dateCreated as string | undefined)
 const date = computed(() =>
-    props.article.dateCreated
-        ? new Date(props.article.dateCreated as string).toLocaleDateString('en-GB', {
-              day: 'numeric',
-              month: 'long',
-              year: 'numeric'
-          })
-        : null
+    dateCreated.value ? useDateFormat(dateCreated.value, 'D MMMM YYYY').value : null
 )
 </script>
 
@@ -46,5 +42,12 @@ const date = computed(() =>
                 :data="block"
             />
         </div>
+        <template v-if="related?.length">
+            <USeparator class="my-12" />
+            <div>
+                <h2 class="mb-6 text-xl font-semibold">More articles</h2>
+                <NewsGrid :articles="related" />
+            </div>
+        </template>
     </UContainer>
 </template>

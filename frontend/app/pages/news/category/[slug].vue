@@ -15,9 +15,12 @@ const { data } = await useCraftMany<{ data: NewsCategoryQuery }>(
 const category = computed(() => data.value?.data?.category as NewsCategoryDetail | null | undefined)
 
 const articles = computed(() =>
-    (data.value?.data?.articles ?? []).flatMap((e): NewsCategoryArticle[] => (e ? [e] : [])).map((e) => ({
-        ...e,
-        dateCreated: e.dateCreated as string | null | undefined,
+    (data.value?.data?.articles ?? []).flatMap((article): NewsCategoryArticle[] => (article ? [article] : [])).map((article) => ({
+        ...article,
+        dateCreated: article.dateCreated as string | null | undefined,
+        categories: (article.categories ?? []).flatMap((category) =>
+            category && 'id' in category ? [{ id: category.id, title: category.title, slug: category.slug }] : []
+        ),
     }))
 )
 
