@@ -1,5 +1,3 @@
-import graphqlLoader from 'vite-plugin-graphql-loader'
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     modules: ['@nuxt/eslint', '@nuxt/ui', '@vueuse/nuxt'],
@@ -27,10 +25,6 @@ export default defineNuxtConfig({
     routeRules: {},
 
     compatibilityDate: '2025-01-15',
-
-    vite: {
-        plugins: [graphqlLoader()]
-    },
 
     eslint: {
         config: {

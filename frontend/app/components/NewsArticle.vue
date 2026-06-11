@@ -1,20 +1,24 @@
 <script setup lang="ts">
-import type { NewsArticleDetail, NewsGridArticle, ArticleCategory } from '@/types/news'
-import type { DynamicSection_MatrixField } from '~~/types/graphql'
+import type { FragmentType } from '~/gql/fragment-masking'
+import type { newsCardFragment } from '~/graphql/news'
+import type { NewsArticleQuery } from '~/gql/graphql'
+
+type NewsArticleDetail = Extract<
+    NonNullable<NewsArticleQuery['entry']>,
+    { dynamicSection?: unknown }
+>
 
 const props = defineProps<{
     article: NewsArticleDetail
-    related?: NewsGridArticle[]
+    related?: Array<FragmentType<typeof newsCardFragment> | null>
 }>()
 
-const categories = computed(() =>
-    (props.article.categories ?? []).flatMap((c): ArticleCategory[] => (c ? [c] : []))
-)
+const categories = computed(() => (props.article.categories ?? []).flatMap((c) => (c ? [c] : [])))
 
-const dateCreated = computed(() => props.article.dateCreated as string | undefined)
-const date = computed(() =>
-    dateCreated.value ? useDateFormat(dateCreated.value, 'D MMMM YYYY').value : null
-)
+const date = computed(() => {
+    const value = props.article.dateCreated as string | null | undefined
+    return value ? useDateFormat(value, 'D MMMM YYYY').value : null
+})
 </script>
 
 <template>
@@ -36,11 +40,9 @@ const date = computed(() =>
                 :alt="article.heroImage[0].alt ?? ''"
                 class="mb-8 w-full rounded-xl object-cover"
             />
-            <CraftComponent
-                v-for="block in article.dynamicSection as DynamicSection_MatrixField[]"
-                :key="block.id ?? undefined"
-                :data="block"
-            />
+            <template v-for="block in article.dynamicSection" :key="block?.id ?? undefined">
+                <CraftComponent v-if="block" :data="block" />
+            </template>
         </div>
         <template v-if="related?.length">
             <USeparator class="my-12" />

@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import newsArticleQuery from '@/queries/newsArticle.gql'
-import type { NewsArticleQuery } from '~~/types/graphql'
-import type { NewsArticleDetail, NewsGridArticle } from '@/types/news'
+import { newsArticleQuery } from '~/graphql/news'
+import type { NewsArticleQuery } from '~/gql/graphql'
+
+type NewsArticleDetail = Extract<
+    NonNullable<NewsArticleQuery['entry']>,
+    { dynamicSection?: unknown }
+>
 
 const route = useRoute()
 const slug = route.params.slug as string
 
-const { data } = await useCraft<{ data: NewsArticleQuery }>(`news-${slug}`, newsArticleQuery, {
-    slug: [slug]
-})
+const { data } = await useCraft(`news-${slug}`, newsArticleQuery, { slug: [slug] })
 
 const article = computed(() => data.value?.data?.entry as NewsArticleDetail | null | undefined)
 
@@ -21,9 +23,7 @@ const categoryIds = computed(() => {
     return ids.length > 0 ? ids : null
 })
 
-type RelatedResponse = { entry: NewsArticleQuery['entry']; related?: Array<NewsGridArticle | null> }
-
-const { data: relatedData } = await useCraft<{ data: RelatedResponse }>(
+const { data: relatedData } = await useCraft(
     `news-${slug}-related`,
     newsArticleQuery,
     computed(() => ({
@@ -33,17 +33,7 @@ const { data: relatedData } = await useCraft<{ data: RelatedResponse }>(
     }))
 )
 
-const related = computed(() => {
-    const ids = new Set(categoryIds.value ?? [])
-    return (relatedData.value?.data?.related ?? []).flatMap((entry): NewsGridArticle[] => {
-        if (!entry) return []
-        if (entry.id === article.value?.id) return []
-        const sharesCategory = (entry.categories ?? []).some(
-            (category) => category && 'id' in category && category.id && ids.has(category.id)
-        )
-        return sharesCategory ? [entry as NewsGridArticle] : []
-    })
-})
+const related = computed(() => relatedData.value?.data?.related ?? [])
 </script>
 
 <template>

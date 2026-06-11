@@ -3,17 +3,19 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "nuxt build",
-        "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev",
+        "build": "bun run codegen && nuxt build",
+        "dev": "bun run --parallel dev:nuxt codegen:watch",
+        "dev:nuxt": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev",
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare",
         "lint": "eslint .",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "check": "bun run lint && bun run format:check && bun run typecheck",
-        "fix": "bun run format && bun run lint --fix",
+        "fix": "bun run format && bun run codegen && bun run lint --fix",
         "typecheck": "nuxt typecheck",
-        "codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen"
+        "codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen",
+        "codegen:watch": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --watch"
     },
     "dependencies": {
         "@iconify-json/lucide": "^1.2.108",
@@ -29,16 +31,13 @@
     },
     "devDependencies": {
         "@graphql-codegen/cli": "^7.0.0",
-        "@graphql-codegen/typed-document-node": "^7.0.0",
-        "@graphql-codegen/typescript": "^6.0.1",
-        "@graphql-codegen/typescript-operations": "^6.0.2",
+        "@graphql-codegen/client-preset": "^6.0.1",
         "@nuxt/eslint": "^1.15.2",
         "@types/node": "^25.9.1",
         "eslint": "^10.4.0",
         "eslint-config-prettier": "^10.1.8",
         "prettier": "^3.8.3",
         "typescript": "^6.0.3",
-        "vite-plugin-graphql-loader": "^5.1.1",
         "vue-tsc": "^3.3.0"
     },
     "packageManager": "bun@1.2.13"

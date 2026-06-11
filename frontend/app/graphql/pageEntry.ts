@@ -1,0 +1,31 @@
+import { graphql } from '~/gql'
+
+export const pageEntryQuery = graphql(`
+    query PageEntry(
+        $slug: [String]
+        $draftId: Int
+        $id: [QueryArgument]
+        $status: [String]
+        $provisionalDrafts: Boolean
+    ) {
+        entry(
+            slug: $slug
+            draftId: $draftId
+            id: $id
+            status: $status
+            provisionalDrafts: $provisionalDrafts
+        ) {
+            id
+            typeHandle
+            ... on pageEntry_Entry {
+                dynamicSection {
+                    ... on EntryInterface {
+                        id
+                        __typename
+                    }
+                    ...ImageCarouselBlock
+                }
+            }
+        }
+    }
+`)

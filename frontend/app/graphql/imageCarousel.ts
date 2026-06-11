@@ -1,0 +1,14 @@
+import { graphql } from '~/gql'
+
+export const imageCarouselFragment = graphql(`
+    fragment ImageCarouselBlock on imageCarousel_Entry {
+        title
+        images {
+            id
+            url(width: 600, height: 600, mode: "crop")
+            title
+            width
+            height
+        }
+    }
+`)

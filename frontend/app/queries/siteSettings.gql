@@ -1,8 +1,0 @@
-query SiteSettings {
-    globalsEntries {
-        ... on siteSettings_Entry {
-            title
-            copyright
-        }
-    }
-}

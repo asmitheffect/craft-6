@@ -1,0 +1,34 @@
+import { graphql } from '~/gql'
+
+export const navigationQuery = graphql(`
+    query Navigation {
+        navigationEntries(level: 1) {
+            ... on navItem_Entry {
+                id
+                title
+                path {
+                    url
+                    target
+                    label
+                    element {
+                        uri
+                    }
+                }
+                children {
+                    ... on navItem_Entry {
+                        id
+                        title
+                        path {
+                            url
+                            target
+                            label
+                            element {
+                                uri
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+`)

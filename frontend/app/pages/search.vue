@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import searchQuery from '@/queries/search.gql'
-import type { SearchQuery } from '~~/types/graphql'
+import { searchQuery } from '~/graphql/search'
 
 const route = useRoute()
 const router = useRouter()
@@ -12,7 +11,7 @@ const query = computed({
 
 const state = reactive({ query: query.value })
 
-const { data, refresh } = await useCraftMany<{ data: SearchQuery }>(
+const { data, refresh } = await useCraftMany(
     'search',
     searchQuery,
     computed(() => ({ q: query.value }))

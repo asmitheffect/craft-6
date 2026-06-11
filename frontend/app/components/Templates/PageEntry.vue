@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import type { EntryInterface, DynamicSection_MatrixField } from '~~/types/graphql'
+import type { PageEntryQuery } from '~/gql/graphql'
 
-type PageEntryData = EntryInterface & {
-    dynamicSection?: Array<DynamicSection_MatrixField>
-}
+type PageEntryData = Extract<NonNullable<PageEntryQuery['entry']>, { dynamicSection?: unknown }>
 
 defineProps<{
     entry: PageEntryData
@@ -11,7 +9,7 @@ defineProps<{
 </script>
 
 <template>
-    <template v-for="block in entry.dynamicSection" :key="block.id ?? undefined">
-        <CraftComponent :data="block" />
+    <template v-for="block in entry.dynamicSection" :key="block?.id ?? undefined">
+        <CraftComponent v-if="block" :data="block" />
     </template>
 </template>

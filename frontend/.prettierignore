@@ -2,4 +2,4 @@ dist
 .nuxt
 .output
 node_modules
-types/graphql.ts
+app/gql

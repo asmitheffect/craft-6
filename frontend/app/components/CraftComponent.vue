@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
-    data: { __typename?: string | null } & Record<string, unknown>
+    data: { __typename?: string | null; id?: string | null }
 }>()
 
 const component = computed(() => {
@@ -12,5 +12,5 @@ const component = computed(() => {
 </script>
 
 <template>
-    <component :is="component" v-if="component" v-bind="data" />
+    <component :is="component" v-if="component" :data="data" />
 </template>

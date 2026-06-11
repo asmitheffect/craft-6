@@ -1,6 +1,6 @@
 import type { NavigationMenuItem } from '@nuxt/ui'
-import NavigationDocument from '@/queries/navigation.gql'
-import type { NavigationQuery } from '~~/types/graphql'
+import { navigationQuery } from '~/graphql/navigation'
+import type { NavigationQuery } from '~/gql/graphql'
 
 type NavigationEntries = NavigationQuery['navigationEntries']
 type NavEntry = NonNullable<NonNullable<NavigationEntries>[number]>
@@ -26,7 +26,7 @@ const toNavItem = (item: NavEntry): NavigationMenuItem => ({
 })
 
 export const useNavigation = () => {
-    const { data } = useCraftMany<{ data: NavigationQuery }>('navigation', NavigationDocument)
+    const { data } = useCraftMany('navigation', navigationQuery)
     const entries = computed(() => data.value?.data?.navigationEntries ?? null)
     const navItems = computed<NavigationMenuItem[]>(() =>
         (entries.value ?? []).flatMap((item) => (item ? [toNavItem(item)] : []))

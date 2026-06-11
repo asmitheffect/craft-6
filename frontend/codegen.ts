@@ -10,11 +10,14 @@ export default {
             }
         }
     },
-    documents: ['app/**/*.vue', 'app/**/*.gql'],
+    documents: ['app/**/*.vue', 'app/**/*.ts', '!app/gql/**/*'],
     ignoreNoDocuments: true,
     generates: {
-        'types/graphql.ts': {
-            plugins: ['typescript', 'typescript-operations']
+        'app/gql/': {
+            preset: 'client',
+            config: {
+                useTypeImports: true
+            }
         }
     }
 } satisfies CodegenConfig

@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import newsListingQuery from '@/queries/news.gql'
-import type { NewsListingQuery } from '~~/types/graphql'
-import type { NewsGridArticle } from '@/types/news'
+import { newsListingQuery } from '~/graphql/news'
 
 const PER_PAGE = 3
 const route = useRoute()
@@ -13,11 +11,7 @@ const page = computed({
 
 const variables = ref({ limit: PER_PAGE, offset: 0 })
 
-const { data, refresh } = await useCraftMany<{ data: NewsListingQuery & { total: number } }>(
-    'news-listing',
-    newsListingQuery,
-    variables
-)
+const { data, refresh } = await useCraftMany('news-listing', newsListingQuery, variables)
 
 watch(page, (val) => {
     variables.value = { limit: PER_PAGE, offset: (val - 1) * PER_PAGE }
@@ -25,7 +19,7 @@ watch(page, (val) => {
 })
 
 const articles = computed(() =>
-    (data.value?.data?.newsEntries ?? []).flatMap((e) => (e ? [e as NewsGridArticle] : []))
+    (data.value?.data?.newsEntries ?? []).flatMap((e) => (e ? [e] : []))
 )
 
 const total = computed(() => data.value?.data?.total ?? 0)

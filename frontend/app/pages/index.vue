@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import homePageQuery from '~/queries/homePage.gql'
-import type { HomePageQuery } from '~~/types/graphql'
+import { homePageQuery } from '~/graphql/homePage'
 import type { ButtonProps } from '@nuxt/ui'
 
-const { data } = await useCraft<{ data: HomePageQuery }>('home-page', homePageQuery)
+const { data } = await useCraft('home-page', homePageQuery)
 
 const entry = computed(() => data.value?.data?.entry)
 
